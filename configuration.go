@@ -99,17 +99,11 @@ func (c *Configuration) Capture(ev *tcell.EventKey) *tcell.EventKey {
 		return nil
 	}
 
-	key := ev.Key()
-	mod := ev.Modifiers()
-
 	var keyName string
-	if key == tcell.KeyRune {
-		keyName = fmt.Sprintf("%d:%d", mod, ev.Rune())
+	if ev.Key() != tcell.KeyRune {
+		keyName = fmt.Sprintf("%d-%d", ev.Modifiers(), ev.Key())
 	} else {
-		if key == tcell.KeyBackspace || key == tcell.KeyTab || key == tcell.KeyEnter {
-			mod ^= tcell.ModCtrl
-		}
-		keyName = fmt.Sprintf("%d-%d", mod, key)
+		keyName = fmt.Sprintf("%d:%d", ev.Modifiers(), ev.Rune())
 	}
 
 	handler := c.handlers[keyName]
