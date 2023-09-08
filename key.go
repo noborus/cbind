@@ -146,6 +146,9 @@ DECODEPIECE:
 			key = k
 			if UnifyEnterKeys && key == ctrlKeys['j'] {
 				key = tcell.KeyEnter
+			} else if key == ctrlKeys['h'] {
+				mod ^= tcell.ModCtrl
+				key = tcell.KeyBackspace
 			} else if key < 0x80 {
 				ch = rune(key)
 			}
