@@ -25,7 +25,8 @@ var ErrInvalidKeyEvent = errors.New("invalid key event")
 var UnifyEnterKeys = true
 
 var fullKeyNames = map[string]string{
-	"backspace2": "Backspace",
+	"backspace":  "Backspace",
+	"backspace2": "Backspace2",
 	"pgup":       "PageUp",
 	"pgdn":       "PageDown",
 	"esc":        "Escape",
@@ -114,7 +115,7 @@ DECODEPIECE:
 		}
 		switch pieceLower {
 		case "backspace":
-			key = tcell.KeyBackspace2
+			key = tcell.KeyBackspace
 			continue
 		case "space", "spacebar":
 			key = tcell.KeyRune
